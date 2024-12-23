@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-	themes: light --default, night --prefersdark;
+	themes: corporate --default, night --prefersdark;
 }
 
 .maplibregl-popup-anchor-bottom .maplibregl-popup-tip,

@@ -42,7 +42,9 @@ export function toAdvert(advertSummary: AdvertSummary): Advert {
 		longitude: Number(coordinates?.[1]) || undefined,
 		estateSize: attributes.find((a) => a.name === "ESTATE_SIZE")?.values[0],
 		thumbnailUrl: firstImageUrl ? `https://cache.willhaben.at/mmo/${firstImageUrl}` : undefined,
+		location: attributes.find((a) => a.name === "LOCATION")?.values[0],
 		price: isNaN(priceAsNumber) ? price : priceAsNumber,
+		numberOfRooms: Number(attributes.find((a) => a.name === "NUMBER_OF_ROOMS")?.values[0]) || undefined,
 	}
 }
 
@@ -55,6 +57,8 @@ export interface Advert {
 	estateSize: string | undefined
 	thumbnailUrl: string | undefined
 	price: string | number | undefined
+	location: string | undefined // e.g. "Wien, 10. Bezirk, Favoriten"
+	numberOfRooms: number | undefined
 	attributes: Attribute[]
 }
 

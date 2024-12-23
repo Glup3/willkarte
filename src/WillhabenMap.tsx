@@ -54,6 +54,10 @@ export const WillhabenMap = ({ adverts }: { adverts: Advert[] }) => {
 			return
 		}
 
+		if (window.innerWidth < 768) {
+			return
+		}
+
 		const advert = feature.properties as Advert
 		window.open(advert.url, "_blank")
 	}
@@ -102,19 +106,45 @@ const EstatePopup = ({ advert }: { advert: Advert }) => {
 			offset={15}
 			closeOnClick={false}
 			closeButton={false}
-			className="w-80"
+			className="w-90"
 			maxWidth="none"
 		>
 			<div className="flex gap-4 w-full font-sans">
 				<img src={advert.thumbnailUrl} alt="advert thumbnail" className="min-w-20 h-28 w-20 rounded-md" />
 
 				<div className="flex flex-col justify-between w-full">
-					<h3 className="font-medium text-sm line-clamp-2">{advert.heading || "---"}</h3>
+					<div>
+						<a href={advert.url} target="_blank">
+							<h3 className="font-medium text-sm line-clamp-2">{advert.heading || "---"}</h3>
+						</a>
 
-					<div className="flex justify-between items-center">
-						<span className="text-muted-foreground">{advert.estateSize ?? "---"} m2</span>
+						<div className="flex mt-1">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 384 512"
+								className="w-2.5 mr-1 text-primary fill-current"
+							>
+								<path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
+							</svg>
+							<span>{advert.location}</span>
+						</div>
+					</div>
 
-						<span className="font-medium text-lg">€ {price ?? "---"}</span>
+					<div className="flex justify-between items-baseline">
+						<div>
+							<span>
+								<span className="text-lg font-bold">{advert.estateSize ?? "---"} </span>
+								<span>
+									m<sup>2</sup>
+								</span>
+							</span>
+							<span className="ml-4">
+								<span className="text-lg font-bold">{advert.numberOfRooms ?? "-"} </span>
+							</span>
+							Zimmer
+						</div>
+
+						<span className="font-medium text-xl text-primary">€ {price ?? "---"}</span>
 					</div>
 				</div>
 			</div>
