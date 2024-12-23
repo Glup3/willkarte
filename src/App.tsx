@@ -1,8 +1,8 @@
 import { MapProvider } from "@vis.gl/react-maplibre"
 import { useState } from "react"
+import { Searchbar } from "./Searchbar"
 import { WillhabenMap } from "./WillhabenMap"
 import { Advert } from "./willhaben"
-import { Searchbar } from "./Searchbar"
 
 function App() {
 	const [adverts, setAdverts] = useState<Advert[] | undefined>(undefined)
