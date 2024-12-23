@@ -28,12 +28,21 @@ export async function fetchData(url: string): Promise<Root | null> {
 
 export function toAdvert(advertSummary: AdvertSummary): Advert {
 	const attributes = advertSummary.attributes.attribute
+	const coordinates = advertSummary.attributes.attribute.find((a) => a.name === "COORDINATES")?.values[0].split(",")
+	const price = advertSummary.attributes.attribute.find((a) => a.name === "PRICE")?.values[0]
+	const priceAsNumber = Number(price)
+	const firstImageUrl = attributes.find((a) => a.name === "ALL_IMAGE_URLS")?.values[0].split(";")[0]
 
 	return {
 		attributes,
 		adId: advertSummary.id,
 		heading: attributes.find((a) => a.name === "HEADING")?.values[0],
-		url: attributes.find((a) => a.name === "SEO_URL")?.values[0],
+		url: `https://www.willhaben.at/iad/${attributes.find((a) => a.name === "SEO_URL")?.values[0]}`,
+		latitude: Number(coordinates?.[0]) || undefined,
+		longitude: Number(coordinates?.[1]) || undefined,
+		estateSize: attributes.find((a) => a.name === "ESTATE_SIZE")?.values[0],
+		thumbnailUrl: firstImageUrl ? `https://cache.willhaben.at/mmo/${firstImageUrl}` : undefined,
+		price: isNaN(priceAsNumber) ? price : priceAsNumber,
 	}
 }
 
@@ -41,6 +50,11 @@ export interface Advert {
 	adId: string
 	heading: string | undefined
 	url: string | undefined
+	latitude: number | undefined // e.g. 48.248.2439666
+	longitude: number | undefined // e.g. 16.4821342
+	estateSize: string | undefined
+	thumbnailUrl: string | undefined
+	price: string | number | undefined
 	attributes: Attribute[]
 }
 
