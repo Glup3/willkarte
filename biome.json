@@ -10,7 +10,11 @@
 		"ignore": ["dist"]
 	},
 	"javascript": {
-		"formatter": { "quoteStyle": "double", "semicolons": "asNeeded" }
+		"formatter": {
+			"quoteStyle": "double",
+			"semicolons": "asNeeded",
+			"lineWidth": 120
+		}
 	},
 	"overrides": [
 		{
