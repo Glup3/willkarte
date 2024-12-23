@@ -1,6 +1,9 @@
 export async function fetchData(url: string): Promise<Root> {
 	try {
-		const resp = await fetch(url.replace(/^https:\/\/www\.willhaben\.at/, "/api"))
+		const isLocalhost = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+		const apiUrl = isLocalhost ? url.replace(/^https:\/\/www\.willhaben\.at/, "/api") : url
+
+		const resp = await fetch(apiUrl)
 
 		if (resp.status !== 200) {
 			throw new Error("status not 200")
