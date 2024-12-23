@@ -64,7 +64,7 @@ export const WillhabenMap = ({ adverts }: { adverts: Advert[] }) => {
 
 	return (
 		<Maplibre
-			id="advertMap"
+			id="willhabenMap"
 			initialViewState={{
 				latitude: viennaCoords[0],
 				longitude: viennaCoords[1],
