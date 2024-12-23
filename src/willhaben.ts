@@ -1,10 +1,9 @@
-export async function fetchData(url: string): Promise<Root | null> {
+export async function fetchData(url: string): Promise<Root> {
 	try {
 		const resp = await fetch(url.replace(/^https:\/\/www\.willhaben\.at/, "/api"))
 
 		if (resp.status !== 200) {
-			console.log("status !== 200", resp)
-			return null
+			throw new Error("status not 200")
 		}
 
 		const data = await resp.text()
@@ -14,15 +13,14 @@ export async function fetchData(url: string): Promise<Root | null> {
 		const nextDataScript = doc.querySelector("script#__NEXT_DATA__")
 
 		if (!nextDataScript) {
-			console.error("__NEXT_DATA__ script not found!")
-			return null
+			throw new Error("__NEXT_DATA__ script not found!")
 		}
 
 		const nextData = JSON.parse(nextDataScript.textContent || "") as unknown as Root
 		return nextData
 	} catch (e) {
-		console.log("fetching data error", e)
-		return null
+		console.error("fetching data", e)
+		throw e
 	}
 }
 

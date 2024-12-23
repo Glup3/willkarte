@@ -70,7 +70,7 @@ export const WillhabenMap = ({ adverts }: { adverts: Advert[] }) => {
 				longitude: viennaCoords[1],
 				zoom: 11,
 			}}
-			style={{ width: "100%", height: 500 }}
+			style={{ width: "100%", height: "100%" }}
 			mapStyle="https://tiles.openfreemap.org/styles/liberty"
 			interactiveLayerIds={["adverts"]}
 			onMouseMove={onHover}

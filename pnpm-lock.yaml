@@ -11,6 +11,9 @@ importers:
       '@tailwindcss/vite':
         specifier: 4.0.0-beta.8
         version: 4.0.0-beta.8(vite@6.0.5(jiti@2.4.2)(lightningcss@1.28.2))
+      '@tanstack/react-query':
+        specifier: ^5.62.8
+        version: 5.62.8(react@18.3.1)
       '@vis.gl/react-maplibre':
         specifier: 1.0.0-alpha.4
         version: 1.0.0-alpha.4(maplibre-gl@4.7.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -617,6 +620,14 @@ packages:
     resolution: {integrity: sha512-ZNlj0fdeH4/uWXafrXklZY+TgmN7wOHWHHBL4i3xzD4BflcCDZJkgJER/8baJCpagMzwWDnA6CyXDX+2q7lMRQ==}
     peerDependencies:
       vite: ^5.2.0 || ^6
+
+  '@tanstack/query-core@5.62.8':
+    resolution: {integrity: sha512-4fV31vDsUyvNGrKIOUNPrZztoyL187bThnoQOvAXEVlZbSiuPONpfx53634MKKdvsDir5NyOGm80ShFaoHS/mw==}
+
+  '@tanstack/react-query@5.62.8':
+    resolution: {integrity: sha512-8TUstKxF/fysHonZsWg/hnlDVgasTdHx6Q+f1/s/oPKJBJbKUWPZEHwLTMOZgrZuroLMiqYKJ9w69Abm8mWP0Q==}
+    peerDependencies:
+      react: ^18 || ^19
 
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
@@ -1810,6 +1821,13 @@ snapshots:
       lightningcss: 1.28.2
       tailwindcss: 4.0.0-beta.8
       vite: 6.0.5(jiti@2.4.2)(lightningcss@1.28.2)
+
+  '@tanstack/query-core@5.62.8': {}
+
+  '@tanstack/react-query@5.62.8(react@18.3.1)':
+    dependencies:
+      '@tanstack/query-core': 5.62.8
+      react: 18.3.1
 
   '@types/estree@1.0.6': {}
 
